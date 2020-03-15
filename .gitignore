@@ -1,0 +1,6 @@
+# Ignore hidden files.
+.*
+!.git*
+
+# Plugin files.
+/plugged/
