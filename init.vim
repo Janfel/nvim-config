@@ -15,15 +15,29 @@ set confirm " Confirmation dialogues
 set list " Show tab characters
 
 if (has("termguicolors"))
-    set termguicolors
+	set termguicolors
 endif
+
+function UseTabs()
+	let &tabstop = &shiftwidth
+	set softtabstop=0
+	set noexpandtab
+endfunction
+command! UseTabs call UseTabs()
+
+function UseSpaces()
+	let &softtabstop = &shiftwidth
+	set tabstop=8
+	set expandtab
+endfunction
+command! UseSpaces call UseSpaces()
 
 let g:mapleader = "\<Space>"
 let g:maplocalleader = ','
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
-nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey ','<CR>
 
-command Config edit ~/.config/nvim/init.vim
+command! Config edit ~/.config/nvim/init.vim
 
 noremap <F3> :Autoformat<CR>
 

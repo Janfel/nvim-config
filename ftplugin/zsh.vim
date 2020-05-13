@@ -1,3 +1,4 @@
-set softtabstop=0
-set tabstop=4
-set noexpandtab
+" Z Shell
+
+set shiftwidth=4
+call UseTabs()
