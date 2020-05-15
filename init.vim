@@ -13,6 +13,7 @@ set visualbell " Disable beeping.
 set smartcase " Smart-case searching.
 set confirm " Confirmation dialogues
 set list " Show tab characters
+set foldmethod=marker " Recognize folding marks.
 
 if (has("termguicolors"))
 	set termguicolors
