@@ -46,6 +46,8 @@ nnoremap <C-s> :w<CR>
 inoremap <C-s> <C-o>:w<CR>
 vnoremap <C-s> <C-c>:w<CR>gv
 
+nnoremap U <C-r>
+
 nnoremap <silent> <Leader>r :!"%:p"<CR>
 inoremap <silent> <C-x> <Esc>:w<CR>:!"%:p"<CR>
 
@@ -67,6 +69,7 @@ Plug 'tpope/vim-endwise'
 Plug 'Townk/vim-autoclose'
 Plug 'vim-scripts/HTML-AutoCloseTag'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'preservim/nerdcommenter'
 
 " Article
 Plug 'airblade/vim-gitgutter'
