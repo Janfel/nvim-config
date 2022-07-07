@@ -2,13 +2,13 @@
 
 local paq = require("paq")
 
-function register(name, url, opts)
+local function register(name, url, opts)
 	local spec = { as = name, url = url, opt = true }
 	if opts then spec = vim.tbl_extend("force", spec, opts) end
 	return paq.register(spec)
 end
 
-function command(cmd)
+local function command(cmd)
 	return function() return vim.cmd(cmd) end
 end
 
