@@ -1,7 +1,10 @@
 # Configuration Notes
 
-## Ideas
+## Gotchas
 
+- Typing `<C-Space>` in the terminal sends `<C-@>` instead.
+
+## Ideas
 
 - Find out how to use `keymodel=stopsel` and `selection=exclusive` in Select mode, but not in Visual mode.
 - Maybe map `C-g u` into `Space`, `Tab`, `Return`, etc. as described in for a more fine-grained undo.
