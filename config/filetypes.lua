@@ -11,11 +11,31 @@ local function configure(ft, func)
 	}
 end
 
+local function defer_unset(opts)
+	local stropts = vim.tbl_map(function(opt) return opt .. "< " end, opts)
+	local code = "setlocal " .. table.concat(stropts)
+	if vim.b.undo_ftplugin then
+		vim.b.undo_ftplugin = vim.b.undo_ftplugin .. " | " .. code
+	else
+		vim.b.undo_ftplugin = code
+	end
+end
+
+local function defer_unlet(opts)
+	local code = "unlet! " .. table.concat(opts, " ")
+	if vim.b.undo_ftplugin then
+		vim.b.undo_ftplugin = vim.b.undo_ftplugin .. " | " .. code
+	else
+		vim.b.undo_ftplugin = code
+	end
+end
+
 local function use_tabs(indent)
 	set.shiftwidth = 0
 	set.tabstop = indent
 	set.softtabstop = 0
 	set.expandtab = false
+	defer_unset { "shiftwidth", "tabstop", "softtabstop", "expandtab" }
 end
 
 local function use_spaces(indent, tabwidth)
@@ -23,6 +43,7 @@ local function use_spaces(indent, tabwidth)
 	set.tabstop = tabwidth or vim.go.tabstop
 	set.softtabstop = -1
 	set.expandtab = true
+	defer_unset { "shiftwidth", "tabstop", "softtabstop", "expandtab" }
 end
 
 
@@ -36,6 +57,7 @@ configure("xml",  function()
 	if vim.g.xml_syntax_folding then
 		set.foldmethod = "syntax"
 		set.foldlevel = 1
+		defer_unset { "foldmethod", "foldlevel" }
 	end
 end)
 
