@@ -1,5 +1,10 @@
 -- init.lua
 
+if vim.fn.has "vim_starting" == 0 then
+	local clear_cache = require("utils").clear_cache
+	clear_cache "utils"
+end
+
 local loadconf = require("utils.conf").load
 
 loadconf "basic"
