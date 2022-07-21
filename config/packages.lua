@@ -131,11 +131,7 @@ end
 
 
 if package "lspconfig" then
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
-	if package "cmp" and package "cmp_nvim_lsp" then
-		capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-	end
-	-- TODO: LSP Stuff
+	loadconf "package/lspconfig"
 end
 
 
