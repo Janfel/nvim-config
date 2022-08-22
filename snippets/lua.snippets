@@ -1,0 +1,14 @@
+snippet l Declare a variable
+	local ${0:name}
+snippet ll Define a variable
+	local ${1:name} = ${0:value}
+snippet rq Call require()
+	require("$1")
+snippet req Require a module
+	local $1 = require("${2:$1}")
+snippet fn Function expression
+	function($1) $0 end
+snippet fun Function definition
+	local function $1($2)
+		$3
+	end

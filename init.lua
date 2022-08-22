@@ -1,26 +1,54 @@
--- init.lua
+-- Neovim Configuration
 
-if vim.fn.has "vim_starting" == 0 then
-	local clear_cache = require("utils").clear_cache
-	clear_cache "utils"
+CONFIG_OPTS = {
+	package_dir = vim.fn.stdpath("data") .. "/site/pack/paqs/",
+	use_cmp = false,
+	use_telescope = true,
+}
+
+local bootstrap = not pcall(require, "impatient")
+local utils = require("config.utils")
+
+local function module(modname)
+	return utils.safe_require("config." .. modname)
 end
 
-local loadconf = require("utils.conf").load
+module "options"
+module "keymaps"
+module "builtins"
+module "hooks.filetype"
 
-loadconf "basic"
-loadconf "filetypes"
-
-if vim.g.vscode then
-	-- VSCode specific configuration.
-	-- See: https://github.com/vscode-neovim/vscode-neovim
+if bootstrap then
+	module "bootstrap"
+	return
 end
 
-if vim.g.neovide then
-	vim.g.neovide_cursor_animation_length = 0.03
-	vim.g.neovide_remember_window_size = false
-	vim.g.neovide_remember_window_position = false
-end
+module "plugins"
+module "plugin.paq"
 
-if vim.o.loadplugins then
-	loadconf "packages"
-end
+module "plugin.vim-bbye"
+module "plugin.vim-closetag"
+module "plugin.vim-matchup"
+module "plugin.vim-move"
+
+module "plugin.vim-endwise"
+module "plugin.vim-repeat"
+module "plugin.vim-sleuth"
+module "plugin.vim-surround"
+module "plugin.vim-speeddating"
+module "plugin.vim-switch"
+
+module "plugin.Comment"
+module "plugin.lspconfig"
+module "plugin.lualine"
+module "plugin.luasnip"
+module "plugin.numb"
+module "plugin.nvim-autopairs"
+module "plugin.nvim-treesitter"
+module "plugin.project_nvim"
+module "plugin.telescope"
+module "plugin.which-key"
+
+module "plugin.doom-one"
+
+vim.cmd [[ colorscheme doom-one ]] -- TODO: Color configuration
